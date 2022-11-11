@@ -1,25 +1,38 @@
 package com.fareye.flipzone.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "cart_item")
-@Setter
-@Getter
+@Entity @Data
+@Builder
+@Getter @Setter @ToString
+@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Table(name = "cart_item")
 public class CartItem {
     @Id
-    private Integer cartItemId;
+    @SequenceGenerator(
+            name = "cart_item_sequence",
+            sequenceName = "cart_item_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "cart_item_sequence"
+    )
+    @Column(name = "cart_item_id")
+    private long cartItemId;
+
+    @Column(name = "product_id")
     private Integer productId;
+
+    @Column(name = "cart_id")
     private Integer cartId;
-    private Integer quantity;
-    private Integer price;
+
+    @Column(name = "cart_item_quantity")
+    private Integer cartItemQuantity;
+
+    @Column(name = "cart_item_price")
+    private Integer cartItemPrice;
 }

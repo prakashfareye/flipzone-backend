@@ -2,24 +2,45 @@ package com.fareye.flipzone.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name = "product")
-@Setter
-@Getter
+@Entity @Data @Builder
+@Getter @Setter @ToString
+@AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Table(name = "product")
 public class Product {
     @Id
-    private Integer productId;
+    @SequenceGenerator(
+            name = "product_sequence",
+            sequenceName = "product_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.AUTO,
+            generator = "product_sequence"
+    )
+    @Column(name = "product_id")
+    private long productId;
+
+    @Column(name = "product_category_id")
     private Integer productCategoryId;      //foreign key (prod_cat table)
+
+    @Column(name = "product_name")
     private String productName;
+
+    @Column(name = "user_id")
     private Integer userId;         //foreign key used from user table
-    private Integer price;
+
+    @Column(name = "product_price")
+    private Integer productPrice;
+
+    @Column(name = "product_description")
     private String productDescription;
-    private Integer quantity;
-    private String imageURL;
+
+    @Column(name = "product_quantity")
+    private Integer productQuantity;
+
+    @Column(name = "product_image_url")
+    private String productImageURL;
 }
