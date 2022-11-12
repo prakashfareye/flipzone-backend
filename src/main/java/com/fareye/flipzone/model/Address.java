@@ -15,6 +15,7 @@ public class Address {
             strategy = GenerationType.AUTO,
             generator = "user_sequence"
     )
+    @Id
     @Column(name="address_id")
     private Long Address_id;
     @Column(name="pincode")

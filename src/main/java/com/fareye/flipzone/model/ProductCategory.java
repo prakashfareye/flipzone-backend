@@ -1,9 +1,12 @@
 package com.fareye.flipzone.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity @Data @Builder
 @Getter @Setter @ToString
@@ -33,4 +36,10 @@ public class ProductCategory {
 
     @Column(name = "product_category_image_url")
     private String productCategoryImageURL;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "productId",cascade = CascadeType.MERGE)
+    @JsonManagedReference
+    private List<Product> product;
+
 }

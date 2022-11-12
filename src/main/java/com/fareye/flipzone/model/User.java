@@ -1,6 +1,8 @@
 package com.fareye.flipzone.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +11,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -26,6 +29,7 @@ public class User {
             strategy = GenerationType.AUTO,
             generator = "user_sequence"
     )
+    @Id
     @Column(name="user_id")
     private Long userId;
     @NotBlank(message = "Name is mandatory")
@@ -39,5 +43,20 @@ public class User {
     private String userEmailId;
     @Column
     private String password;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "orderId",cascade = CascadeType.MERGE)
+    @JsonManagedReference
+    private List<Order> Orders;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
+    @JsonManagedReference
+    private List<Transaction> Transactions;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cartId",cascade = CascadeType.MERGE)
+    @JsonManagedReference
+    private List<Cart> Carts;
 
 }
