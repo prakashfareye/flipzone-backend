@@ -35,6 +35,13 @@ public class Order {
     private List<Transaction> transactions;
 
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "orderItemId",cascade = CascadeType.MERGE)
+    @JsonManagedReference
+    private List<OrderItem> orderItems;
+
+
+
     @Column(name = "status")
     private String status = "Pending";
 
@@ -46,4 +53,6 @@ public class Order {
 
     @Column(name = "order_date")
     private LocalDateTime orderDate = LocalDateTime.now();
+
+
 }

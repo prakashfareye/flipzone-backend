@@ -36,9 +36,6 @@ public class Cart {
     @JoinColumn(name="user_id")
     private User  user;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cartItemId",cascade = CascadeType.MERGE)
-    @JsonManagedReference
-    private List<CartItem> CartItems;
+
 
 }
