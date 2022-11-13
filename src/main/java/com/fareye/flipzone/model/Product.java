@@ -54,11 +54,6 @@ public class Product {
     @Column(name = "product_image_url")
     private String productImageURL;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "cartItemId;",cascade = CascadeType.MERGE)
-//    @JsonManagedReference
-//    private List<CartItem> CartItems;
-
     @JsonIgnore
     @OneToMany(mappedBy = "cartItemId",cascade = CascadeType.MERGE)
     @JsonManagedReference

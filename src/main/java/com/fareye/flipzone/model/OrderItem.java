@@ -3,6 +3,7 @@ package com.fareye.flipzone.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
+public class OrderItem  implements Serializable {
     @Id
     @SequenceGenerator(name = "order_item_sequence", sequenceName = "order_item_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "order_item_sequence")

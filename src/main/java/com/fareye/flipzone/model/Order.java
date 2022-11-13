@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +15,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+@ToString
+public class Order implements Serializable {
     @Id
     @SequenceGenerator(name = "order_sequence", sequenceName = "order_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "order_sequence")
@@ -35,7 +37,6 @@ public class Order {
     private List<Transaction> transactions;
 
 
-    @JsonIgnore
     @OneToMany(mappedBy = "orderItemId",cascade = CascadeType.MERGE)
     @JsonManagedReference
     private List<OrderItem> orderItems;
