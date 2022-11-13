@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @NoArgsConstructor
@@ -41,8 +42,12 @@ public class User {
     @NotBlank(message = "Email is mandatory")
     @Column(name="user_email_id")
     private String userEmailId;
-    @Column
+    @Column(name = "password")
     private String password;
+
+    @NotNull
+    @Column(name = "user_role")
+    private String role;
 
     @JsonIgnore
     @OneToMany(mappedBy = "orderId",cascade = CascadeType.MERGE)
