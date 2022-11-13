@@ -36,6 +36,9 @@ public class Product {
     @Column(name = "product_name")
     private String productName;
 
+    @Column(name = "brand")
+    private String brand;
+
     @Column(name = "user_id")
     private Integer userId;         //foreign key used from user table
 

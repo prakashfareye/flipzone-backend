@@ -28,6 +28,12 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
+    @GetMapping("/search/{keyword}")
+    public ResponseEntity<List<Product>> getFromSearch(@PathVariable String keyword) {
+        List<Product> products = productService.getProductsFromSearch(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable long id) {
         return productService.getProductById(id);

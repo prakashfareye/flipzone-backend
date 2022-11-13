@@ -20,6 +20,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductsFromSearch(String keyword) {
+        if (keyword == null) return productRepository.findAll();
+        return productRepository.search(keyword);
+    }
+
+    @Override
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
