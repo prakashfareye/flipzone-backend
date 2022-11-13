@@ -30,11 +30,8 @@ public class Product {
 //    @Column(name = "product_category_id")
 //    private Integer productCategoryId;      //foreign key (prod_cat table)
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonBackReference
-    @JoinColumn(name="product_category_id")
-    private ProductCategory  productCategory;
-
+    @Column(name = "category_id")
+    private long categoryId;
 
     @Column(name = "product_name")
     private String productName;

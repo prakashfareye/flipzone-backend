@@ -16,18 +16,3 @@ public interface ProductService {
 
     void deleteProduct(long id);
 }
-
-/*
-
-    User createUser(User user) throws BadRequestException;
-
-    List<User> getUsers() throws BadRequestException;
-
-    User getUserById(long id) throws NotFoundException;
-
-    User getUserByEmail(String email) throws NotFoundException;
-
-    User updateUser(long id, User newUser) throws NotFoundException;
-
-    void deleteUser(long id) throws NotFoundException;
- */
