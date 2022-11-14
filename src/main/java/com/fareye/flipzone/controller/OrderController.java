@@ -8,37 +8,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
     OrderServiceImpl orderService;
 
-    @GetMapping(path = "/orders")
+    @GetMapping
     public List<Order> getorders() throws Exception
     {
         return orderService.getAllorders();
     }
 
-    @PostMapping(path = "/order")
+    @PostMapping
     public Order addorder(@RequestBody  Order order) throws Exception
     {
         return orderService.addorders(order);
     }
-    @PutMapping(path = "/order")
-    public Order updateorder(@RequestBody  Order order) throws Exception
+    @PutMapping(path = "/u/{id}")
+    public Order updateorder(@PathVariable Long id,@RequestBody  Order order) throws Exception
     {
-        return orderService.updateorder(order);
+        return orderService.updateorder(id,order);
     }
-    @DeleteMapping(path = "/order")
-    public Order deleterorder(@RequestBody  Order order) throws Exception
+    @DeleteMapping(path = "/u/{id}")
+    public String deleterorder(@PathVariable  Long id) throws Exception
     {
-        return orderService.deleteorder(order);
+         orderService.deleteorder(id);
+
+         return "Order Deleted Succesfully";
     }
 
-    @GetMapping(path = "/orderbyid")
-    public List<Order> getordersByid() throws Exception
+    @GetMapping(path = "/u/{id}")
+    public List<Order> getordersByid(@PathVariable Long id) throws Exception
     {
-        return orderService.getOrderByid();
+        return orderService.getOrderByid(id);
     }
 
 }

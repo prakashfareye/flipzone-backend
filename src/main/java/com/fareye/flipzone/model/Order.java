@@ -32,6 +32,8 @@ public class Order{
     @JoinColumn(name="user_id")
     private User  user;
 
+
+
     @JsonIgnore
     @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
     @JsonManagedReference
@@ -39,7 +41,7 @@ public class Order{
 
 
 
-    @OneToMany(mappedBy = "orderItemId",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orderItemId",cascade = {CascadeType.ALL})
     @JsonManagedReference
     private List<OrderItem> orderItems;
 
