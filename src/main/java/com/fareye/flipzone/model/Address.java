@@ -14,17 +14,23 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name="Address")
 public class Address {
-
+    @Id
+    @SequenceGenerator(
+            name = "address_sequence",
+            sequenceName = "address_sequence",
+            allocationSize = 1
+    )
     @GeneratedValue(
             strategy = GenerationType.AUTO,
-            generator = "user_sequence"
+            generator = "address_sequence"
     )
-    @Id
     @Column(name="address_id")
-    private Long Address_id;
-    @Column(name="pincode")
-    private String pincode;
-    @Column(name="desccription")
+    private Long address_id;
+    @Column(name="pin_code")
+    private String pinCode;
+    @Column(name="description")
     private String description;
+    @Column(name = "user_id")
+    private long userId;
 
 }

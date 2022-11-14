@@ -1,51 +1,51 @@
 package com.fareye.flipzone.controller;
 
 import com.fareye.flipzone.model.User;
-import com.fareye.flipzone.service.Userservice;
+import com.fareye.flipzone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    Userservice userService;
+    UserService userService;
 
-    @PostMapping(path = "/user")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public String add(@RequestBody User user) throws Exception{
-        userService.addUser(user);
-        return "User Added Successfully";
-        // return user_todo.userList;
+    @PostMapping
+    public ResponseEntity<User> create(@RequestBody User newUser) {
+        User user = userService.create(newUser);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
-    @GetMapping(path = "/users")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public List<User> getusers() throws Exception
-    {
-        return userService.getAlluser();
+
+    @GetMapping
+    public ResponseEntity<List<User>> getUsers() {
+        List<User> users = userService.getUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
-//    @PutMapping(path = "/user")
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    public List<User> updateusers(@RequestBody User user) throws Exception
-//    {
-//        return userService.getAlluser();
-//    }
-//    @DeleteMapping(path = "/userbyid")
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    public String deleteeuser(@RequestParam String id) throws Exception
-//    {
-//        Integer id1=Integer.parseInt(id);
-//        userService.deleteUser(id1);
-//        return "user deleted Succesfully";
-//    }
-//    @GetMapping(path = "/userbyid")
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    public User getuserbyiduser(@RequestParam String id) throws Exception
-//    {
-//        Integer id1=Integer.parseInt(id);
-//        return  userService.getuserbyid(id1);
-//    }
 
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable long id) {
+        return userService.getUserById(id);
+    }
 
+    @GetMapping("/email/{email}")
+    public User getUserByEmail(@PathVariable String email){
+        return userService.findByEmail(email);
+    }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable long id, @RequestBody User updatedUser) {
+        return userService.updateUser(id, updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable long id) {
+        userService.deleteUserById(id);
+        return "User deleted";
+    }
 }
