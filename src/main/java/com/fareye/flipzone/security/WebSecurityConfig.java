@@ -34,9 +34,11 @@ public class WebSecurityConfig {
                 .antMatchers("/product/**").permitAll()
                 .antMatchers("/order/**").permitAll()
                 .antMatchers("/order").permitAll()
-
+                .antMatchers("/transactions/**").permitAll()
+                .antMatchers("/transaction/**").permitAll()
 //                .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
                 .antMatchers("/category").permitAll()
+                .antMatchers("/cart").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

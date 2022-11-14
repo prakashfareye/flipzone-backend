@@ -1,7 +1,6 @@
 package com.fareye.flipzone.service;
 
 
-import com.fareye.flipzone.model.OrderItem;
 import com.fareye.flipzone.model.Transaction;
 import com.fareye.flipzone.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,26 @@ public class TransactionServiceImpl implements TransactionService{
         return (List<Transaction>) transactionRepository.findById(1L).orElseThrow(
                 () -> new FileSystemNotFoundException("OrderItem Not Found"));
 
+    }
+
+    @Override
+    public List<Transaction> getAllTransactionByOrderId(Long orderId) {
+        List<Transaction> list;
+        list= (List<Transaction>) transactionRepository.findByOrderId(orderId);
+        if(list.size()==0||list==null){
+            return null;
+        }
+       return list;
+    }
+
+    @Override
+    public List<Transaction> getAllTransactionByUserId(Long userId){
+        List<Transaction> list;
+        list=transactionRepository.findByUserId(userId);
+        if(list.size()==0||list==null){
+            return null;
+        }
+        return list;
     }
 
 

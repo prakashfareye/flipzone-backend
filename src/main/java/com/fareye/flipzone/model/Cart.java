@@ -26,16 +26,15 @@ public class Cart {
             generator = "cart_sequence"
     )
     @Column(name = "cart_id")
-    private long cartId;
+     private Long cartId;
 
 //    @Column(name = "user_id")
 //    private Integer userId;     //FK from user table
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name="user_id")
     private User  user;
-
-
 
 }

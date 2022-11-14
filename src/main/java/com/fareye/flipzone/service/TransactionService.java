@@ -10,4 +10,7 @@ public interface TransactionService {
     List<Transaction> getAllTransaction();
 
     List<Transaction> getAllTransactionById();
+    List<Transaction> getAllTransactionByOrderId(Long userId);
+
+    List<Transaction> getAllTransactionByUserId(Long userId);
 }

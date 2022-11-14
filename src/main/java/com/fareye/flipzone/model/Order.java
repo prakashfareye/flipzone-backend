@@ -34,10 +34,10 @@ public class Order{
 
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
-    @JsonManagedReference
-    private List<Transaction> transactions;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
+//    @JsonManagedReference
+//    private List<Transaction> transactions;
 
 
 
