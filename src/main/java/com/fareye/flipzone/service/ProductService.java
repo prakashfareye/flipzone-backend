@@ -12,6 +12,8 @@ public interface ProductService {
 
     List<Product> getProducts();
 
+    List<Product> getProductByCategory(long id);
+
     List<Product> getProductsFromSearch(String keyword);
 
     Product getProductById(long id);
