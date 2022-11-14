@@ -36,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<Product> getProductByUserId(long id) {
+        return productRepository.findByUserId(id);
+    }
+
+    @Override
     public Product getProductById(long id) {
         return productRepository.findById(id).orElseThrow(
                 () -> new FileSystemNotFoundException("Product Not Found"));
