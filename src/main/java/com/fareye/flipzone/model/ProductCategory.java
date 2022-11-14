@@ -8,8 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
-@Entity @Data @Builder
-@Getter @Setter @ToString
+@Entity
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "product_category")

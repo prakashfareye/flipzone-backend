@@ -8,8 +8,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity @Data @Builder
-@Getter @Setter @ToString
+@Entity
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "product")
@@ -53,11 +53,6 @@ public class Product {
 
     @Column(name = "product_image_url")
     private String productImageURL;
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "cartItemId;",cascade = CascadeType.MERGE)
-//    @JsonManagedReference
-//    private List<CartItem> CartItems;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cartItemId",cascade = CascadeType.MERGE)

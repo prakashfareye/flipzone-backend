@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name="address")
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="Address")
 public class Address {
     @Id
     @SequenceGenerator(

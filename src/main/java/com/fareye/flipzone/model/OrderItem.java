@@ -1,16 +1,18 @@
 package com.fareye.flipzone.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-@Table(name = "order_item")
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem {
+@Table(name = "order_item")
+public class OrderItem  {
     @Id
     @SequenceGenerator(name = "order_item_sequence", sequenceName = "order_item_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "order_item_sequence")
@@ -24,7 +26,7 @@ public class OrderItem {
 //    private Long orderId;
 
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name="order_id")
     private Order  order;
