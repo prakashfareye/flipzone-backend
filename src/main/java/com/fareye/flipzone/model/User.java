@@ -45,7 +45,7 @@ public class User {
     private String password;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "orderId",cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "orderId",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Order> Orders;
 

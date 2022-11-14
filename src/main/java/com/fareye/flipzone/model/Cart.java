@@ -8,9 +8,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity @Data
+@Entity
 @Builder
-@Getter @Setter @ToString
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cart")

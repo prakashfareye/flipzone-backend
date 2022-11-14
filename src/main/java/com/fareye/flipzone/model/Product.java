@@ -8,8 +8,8 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity @Data @Builder
-@Getter @Setter @ToString
+@Entity
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "product")

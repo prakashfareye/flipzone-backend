@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name="Address")
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="Address")
 public class Address {
 
     @GeneratedValue(

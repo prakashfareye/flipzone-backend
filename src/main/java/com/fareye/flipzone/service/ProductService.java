@@ -1,8 +1,10 @@
 package com.fareye.flipzone.service;
 
 import com.fareye.flipzone.model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface ProductService {
 

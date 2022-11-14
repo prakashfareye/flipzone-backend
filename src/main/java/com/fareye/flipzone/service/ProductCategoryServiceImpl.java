@@ -3,10 +3,12 @@ package com.fareye.flipzone.service;
 import com.fareye.flipzone.model.ProductCategory;
 import com.fareye.flipzone.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.nio.file.FileSystemNotFoundException;
 import java.util.List;
 
+@Service
 public class ProductCategoryServiceImpl implements ProductCategoryService{
 
     @Autowired

@@ -1,12 +1,10 @@
 package com.fareye.flipzone.controller;
 
 import com.fareye.flipzone.model.Transaction;
-import com.fareye.flipzone.model.User;
-import com.fareye.flipzone.repository.TransactionRepository;
-import com.fareye.flipzone.service.TransactionService;
+import com.fareye.flipzone.service.TransactionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,13 +13,18 @@ import java.util.List;
 public class TransactionController {
 
     @Autowired
-    TransactionService transactionService;
+    TransactionServiceImpl transactionService;
 
     @GetMapping(path = "/transactions")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public List<Transaction> getusers() throws Exception
+    public List<Transaction> getTransactions() throws Exception
     {
         return transactionService.getAllTransaction();
     }
+    @PostMapping(path = "/transactions")
+    public List<Transaction> postTransactions() throws Exception
+    {
+        return transactionService.getAllTransaction();
+    }
+
 
 }

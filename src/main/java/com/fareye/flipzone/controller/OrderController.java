@@ -1,13 +1,9 @@
 package com.fareye.flipzone.controller;
 
 import com.fareye.flipzone.model.Order;
-import com.fareye.flipzone.model.User;
-import com.fareye.flipzone.service.OrderService;
+import com.fareye.flipzone.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +11,7 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    OrderService orderService;
+    OrderServiceImpl orderService;
 
     @GetMapping(path = "/orders")
     public List<Order> getorders() throws Exception
@@ -24,10 +20,25 @@ public class OrderController {
     }
 
     @PostMapping(path = "/order")
-    public Order addorder(Order order) throws Exception
+    public Order addorder(@RequestBody  Order order) throws Exception
     {
         return orderService.addorders(order);
     }
+    @PutMapping(path = "/order")
+    public Order updateorder(@RequestBody  Order order) throws Exception
+    {
+        return orderService.updateorder(order);
+    }
+    @DeleteMapping(path = "/order")
+    public Order deleterorder(@RequestBody  Order order) throws Exception
+    {
+        return orderService.deleteorder(order);
+    }
 
+    @GetMapping(path = "/orderbyid")
+    public List<Order> getordersByid() throws Exception
+    {
+        return orderService.getOrderByid();
+    }
 
 }

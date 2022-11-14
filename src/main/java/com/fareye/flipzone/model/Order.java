@@ -15,8 +15,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class Order implements Serializable {
+@Table(name = "order")
+public class Order{
     @Id
     @SequenceGenerator(name = "order_sequence", sequenceName = "order_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "order_sequence")
@@ -26,6 +26,7 @@ public class Order implements Serializable {
 //    @Column(name = "user_id")
 //    private Long userId;
 
+    //@JsonIgnore
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonBackReference
     @JoinColumn(name="user_id")
@@ -37,7 +38,8 @@ public class Order implements Serializable {
     private List<Transaction> transactions;
 
 
-    @OneToMany(mappedBy = "orderItemId",cascade = CascadeType.MERGE)
+
+    @OneToMany(mappedBy = "orderItemId",cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<OrderItem> orderItems;
 
