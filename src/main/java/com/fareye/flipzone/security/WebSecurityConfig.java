@@ -32,11 +32,16 @@ public class WebSecurityConfig {
                 .antMatchers("/address").permitAll()
                 .antMatchers("/address/**").permitAll()
                 .antMatchers("/product/**").permitAll()
+
                 .antMatchers("/order/**").permitAll()
                 .antMatchers("/order").permitAll()
                 .antMatchers("/transactions/**").permitAll()
                 .antMatchers("/transaction/**").permitAll()
-//                .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
+                .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
+
+                .antMatchers("/login").permitAll()
+               // .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
+
                 .antMatchers("/category").permitAll()
                 .antMatchers("/cart").permitAll()
                 .anyRequest()
