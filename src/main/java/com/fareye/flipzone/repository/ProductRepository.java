@@ -15,4 +15,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "SELECT * FROM product p WHERE p.category_id = :categoryId", nativeQuery = true)
     public List<Product> productByCategory(long categoryId);
+
+    @Query(value = "SELECT * FROM product p WHERE p.user_id = :id", nativeQuery = true)
+    public List<Product> findByUserId(long id);
+
+
 }
