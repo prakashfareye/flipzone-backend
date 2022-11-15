@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Builder
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,7 +31,7 @@ public class Cart {
 //    private Integer userId;     //FK from user table
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JsonBackReference
     @JoinColumn(name="user_id")
     private User  user;

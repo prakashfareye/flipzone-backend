@@ -38,8 +38,10 @@ public class WebSecurityConfig {
                 .antMatchers("/transactions/**").permitAll()
                 .antMatchers("/transaction/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
-
+                .antMatchers("/cart").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/cartItem").permitAll()
+                .antMatchers("/cartItem/**").permitAll()
                // .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
 
                 .antMatchers("/category").permitAll()

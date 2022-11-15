@@ -1,6 +1,7 @@
 package com.fareye.flipzone.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,19 +31,29 @@ public class CartItem {
 //    @Column(name = "cart_id")
 //    private Integer cartId;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonBackReference
-    @JoinColumn(name="cart_id")
-    private Cart  cart;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonBackReference
-    @JoinColumn(name="product_id")
-    private Product product;
+    @Column(name = "cart_id")
+    private Long cartId;
+
+
+    @Column(name = "order_id")
+    private Long orderId;
+
+//    @JsonIgnore
+//    @ManyToOne(cascade = CascadeType.MERGE)
+//    @JsonBackReference
+//    @JoinColumn(name="product_id")
+//    private Product product;
+
+    @Column(name = "product_id")
+    private Long productId;
 
     @Column(name = "cart_item_quantity")
     private Integer cartItemQuantity;
 
     @Column(name = "cart_item_price")
     private Integer cartItemPrice;
+
 }
