@@ -24,4 +24,6 @@ public interface CartItemService {
     List<CartItem> getCartItemByCartId(Long id);
 
     CartItem updateCartItem(Long id, CartItem cartItem, Integer add);
+
+    void deleteCartItemsByUserId(Long id);
 }
