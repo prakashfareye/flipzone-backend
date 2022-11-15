@@ -9,9 +9,10 @@ public interface OrderService {
 
     Order addorders(Order order);
 
-    Order updateorder(Order order);
+    Order updateorder(Long id,Order order);
+    void deleteorder(Long id);
 
-    Order deleteorder(Order order);
+    List<Order> getOrderByid(Long id);
 
-    List<Order> getOrderByid();
+    Order getOrderByOrderid(Long id);
 }

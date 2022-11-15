@@ -1,13 +1,12 @@
 package com.fareye.flipzone.service;
 
-import com.fareye.flipzone.repository.CartRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.fareye.flipzone.model.Cart;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@Service
-public class CartService {
+import java.util.List;
 
-    @Autowired
-    CartRepository cartRepository;
+public interface CartService {
+    List<Cart> getCart();
 
+    Cart addCart(Cart cart);
 }

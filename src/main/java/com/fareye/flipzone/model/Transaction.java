@@ -30,14 +30,20 @@ public class Transaction {
     @Column(name="transaction_date")
     private Date   transactionDate;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonBackReference
-    @JoinColumn(name="user_id")
-    private User  user;
+//    @ManyToOne(cascade = CascadeType.MERGE)
+//    @JsonBackReference
+//    @JoinColumn(name="user_id")
+//    private User  user;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonBackReference
-    @JoinColumn(name="order_id")
-    private Order  order;
+    @Column(name="user_Id")
+    private Long userId;
+
+    @Column(name="order_id")
+    private Long orderId;
+
+//    @ManyToOne(cascade = CascadeType.MERGE)
+//    @JsonBackReference
+//    @JoinColumn(name="order_id")
+//    private Order  order;
 
 }

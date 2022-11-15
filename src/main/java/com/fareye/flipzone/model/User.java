@@ -54,10 +54,10 @@ public class User {
     @JsonManagedReference
     private List<Order> Orders;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
-    @JsonManagedReference
-    private List<Transaction> Transactions;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
+//    @JsonManagedReference
+//    private List<Transaction> Transactions;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cartId",cascade = CascadeType.MERGE)
