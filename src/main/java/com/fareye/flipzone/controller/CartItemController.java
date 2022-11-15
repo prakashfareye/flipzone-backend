@@ -33,10 +33,12 @@ public class CartItemController {
 
         return cartItemService.getCartItemByUserId(id);
     }
-//    @DeleteMapping("/u/{id}")
-//    public void DeleteCartItemByUserId(@PathVariable Long id){
-//
-//    }
+
+    @DeleteMapping("/u/{id}")
+    public void DeleteCartItemByUserId(@PathVariable Long id){
+        cartItemService.deleteCartItemsByUserId(id);
+    }
+
     @GetMapping("/o/{id}")
     public List<CartItem> getCartItemByOrderId(@PathVariable Long id){
 
