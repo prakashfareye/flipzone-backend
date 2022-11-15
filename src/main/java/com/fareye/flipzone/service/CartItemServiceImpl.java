@@ -21,8 +21,8 @@ public class CartItemServiceImpl implements CartItemService {
     ProductRepository productRepository;
     @Override
     public CartItem addCartItem(CartItem cartitem) {
-        CartItem CartitemDBsaved=(CartItem)cartItemRepository.save(cartitem);
-        return CartitemDBsaved;
+
+        return  cartItemRepository.save(cartitem);
     }
     @Override
     public List<CartItem> getCartItems() {
@@ -59,6 +59,12 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItemRepository.findByCartId(id);
     }
 
+    public List<CartItem> getCartItemByProductId(Long uid,Long pid) {
+
+      return  cartItemRepository.findByProductIdAndUserId(uid,pid);
+
+    }
+
     @Override
     public  CartItem getCartItemByCartItemtId(Long id) {
         return cartItemRepository.findByCartItemId(id);
@@ -70,4 +76,5 @@ public class CartItemServiceImpl implements CartItemService {
         cartItem.setCartItemId(id);
         return cartItemRepository.save(cartItem);
     }
+
 }

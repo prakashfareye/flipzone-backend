@@ -32,20 +32,14 @@ public class Order{
     @JoinColumn(name="user_id")
     private User  user;
 
-
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.MERGE)
-//    @JsonManagedReference
-//    private List<Transaction> transactions;
-
-
+    //@JsonIgnore
+    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "orderItemId",cascade = {CascadeType.ALL})
     @JsonManagedReference
     private List<OrderItem> orderItems;
-
-
 
     @Column(name = "status")
     private String status = "Pending";

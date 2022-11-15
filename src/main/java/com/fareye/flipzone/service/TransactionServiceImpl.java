@@ -33,7 +33,7 @@ public class TransactionServiceImpl implements TransactionService{
     @Override
     public List<Transaction> getAllTransactionByOrderId(Long orderId) {
         List<Transaction> list;
-        list= (List<Transaction>) transactionRepository.findByOrderId(orderId);
+        list= (List<Transaction>) transactionRepository.findByOrder_OrderId(orderId);
         if(list.size()==0||list==null){
             return null;
         }
