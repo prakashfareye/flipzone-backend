@@ -3,6 +3,7 @@ package com.fareye.flipzone.service;
 import com.fareye.flipzone.model.Product;
 import com.fareye.flipzone.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.*;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.FileSystemNotFoundException;
@@ -60,5 +61,10 @@ public class ProductServiceImpl implements ProductService {
         productRepository.findById(id).orElseThrow(
                 () -> new FileSystemNotFoundException("Product Not Found"));
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Product> findTopSellingProducts() {
+        return productRepository.findTopSellingProducts();
     }
 }

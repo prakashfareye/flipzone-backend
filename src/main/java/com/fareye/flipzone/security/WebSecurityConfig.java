@@ -46,6 +46,7 @@ public class WebSecurityConfig {
 
                 .antMatchers("/category").permitAll()
                 .antMatchers("/cart").permitAll()
+                .antMatchers("/orderitem").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
