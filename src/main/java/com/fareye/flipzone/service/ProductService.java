@@ -1,6 +1,7 @@
 package com.fareye.flipzone.service;
 
 import com.fareye.flipzone.model.Product;
+import org.springframework.security.core.parameters.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface ProductService {
     Product updateProductQuantity(long id);
 
     void deleteProduct(long id);
+
+    List<Product> findTopSellingProducts();
 }

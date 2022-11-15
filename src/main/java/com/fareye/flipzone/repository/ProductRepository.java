@@ -19,5 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM product p WHERE p.user_id = :id", nativeQuery = true)
     public List<Product> findByUserId(long id);
 
-
+    @Query(value = "SELECT * FROM product WHERE product_id IN (SELECT product_id FROM (SELECT order_item.product_id, SUM(order_item.quantity) AS quantity_sold FROM order_item GROUP BY order_item.product_id ORDER BY  quantity_sold DESC LIMIT 5) AS foo);\n", nativeQuery = true)
+    public List<Product> findTopSellingProducts();
 }
