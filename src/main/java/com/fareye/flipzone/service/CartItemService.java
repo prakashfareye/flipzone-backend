@@ -9,6 +9,8 @@ import java.util.List;
 
 
 public interface CartItemService {
+
+    CartItem getCartItemByCartItemtId(Long id);
     CartItem addCartItem(CartItem cartitem);
 
     List<CartItem> getCartItems();
@@ -19,4 +21,7 @@ public interface CartItemService {
 
     void deleteCartItemByOrderId(Long id);
     List<CartItem> getCartItemByOrderId(Long id);
+    List<CartItem> getCartItemByCartId(Long id);
+
+    CartItem updateCartItem(Long id, CartItem cartItem, Integer add);
 }
