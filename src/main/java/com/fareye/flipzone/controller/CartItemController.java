@@ -1,5 +1,6 @@
 package com.fareye.flipzone.controller;
 
+import com.fareye.flipzone.dto.CartItemDto;
 import com.fareye.flipzone.model.Cart;
 import com.fareye.flipzone.model.CartItem;
 import com.fareye.flipzone.service.CartItemService;
@@ -29,7 +30,7 @@ public class CartItemController {
 
     }
     @GetMapping("/u/{id}")
-    public List<CartItem> getCartItemByUserId(@PathVariable Long id){
+    public List<CartItemDto> getCartItemByUserId(@PathVariable Long id){
 
         return cartItemService.getCartItemByUserId(id);
     }

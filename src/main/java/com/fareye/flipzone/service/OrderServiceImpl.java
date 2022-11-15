@@ -1,11 +1,18 @@
 package com.fareye.flipzone.service;
 
 
+import com.fareye.flipzone.dto.OrderDto;
+import com.fareye.flipzone.dto.OrderItemDto;
 import com.fareye.flipzone.model.Order;
+import com.fareye.flipzone.model.OrderItem;
+import com.fareye.flipzone.model.Product;
 import com.fareye.flipzone.repository.OrderRepository;
+import com.fareye.flipzone.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.FileSystemNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,6 +20,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @Override
     public List<Order> getAllorders() {
@@ -40,11 +50,19 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.deleteById(id);
 
     }
-
     @Override
     public List<Order> getOrderByid(Long id) {
 
-        return (List<Order>) orderRepository.findByUser_userId(id);
+        List<Order> orders = orderRepository.findByUser_userId(id);
+        List<OrderDto>orderDtos=new ArrayList<>();
+        return orders;
+    }
+
+    @Override
+    public Order getOrderByOrderid(Long id) {
+
+        return  orderRepository.findById(id).orElseThrow(()->new FileSystemNotFoundException("Order Not Found"));
+
     }
 
 }

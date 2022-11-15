@@ -39,9 +39,15 @@ public class OrderController {
     }
 
     @GetMapping(path = "/u/{id}")
-    public List<Order> getordersByid(@PathVariable Long id) throws Exception
+    public List<Order> getordersByUserid(@PathVariable Long id) throws Exception
     {
         return orderService.getOrderByid(id);
     }
+    @GetMapping(path = "/o/{id}")
+    public Order getordersByOrderid(@PathVariable Long id) throws Exception
+    {
+        return orderService.getOrderByOrderid(id);
+    }
+
 
 }

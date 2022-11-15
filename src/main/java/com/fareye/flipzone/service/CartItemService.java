@@ -1,5 +1,6 @@
 package com.fareye.flipzone.service;
 
+import com.fareye.flipzone.dto.CartItemDto;
 import com.fareye.flipzone.model.CartItem;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public interface CartItemService {
 
     List<CartItem> getCartItems();
 
-    List<CartItem> getCartItemByUserId(Long id);
+    List<CartItemDto> getCartItemByUserId(Long id);
 
     void deleteCartItemByUserId(Long id);
 
