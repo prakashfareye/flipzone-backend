@@ -1,8 +1,7 @@
 package com.fareye.flipzone.controller;
 
 import com.fareye.flipzone.dto.CartItemDto;
-import com.fareye.flipzone.model.Cart;
-import com.fareye.flipzone.model.CartItem;
+import com.fareye.flipzone.model.*;
 import com.fareye.flipzone.service.CartItemService;
 import com.fareye.flipzone.service.CartItemServiceImpl;
 import com.fareye.flipzone.service.CartService;
@@ -54,5 +53,16 @@ public class CartItemController {
     }
 
 
+    @PutMapping("/increase/{id}")
+    public CartItem IncreaseItemCount (@PathVariable Long id) {
+        CartItem cartItem = cartItemService.getCartItemByCartItemtId(id);
+        return cartItemService.updateCartItem(id, cartItem, 1);
+    }
+
+    @PutMapping("/decrease/{id}")
+    public CartItem DecreaseItemCount (@PathVariable Long id) {
+        CartItem cartItem = cartItemService.getCartItemByCartItemtId(id);
+        return cartItemService.updateCartItem(id, cartItem, -1);
+    }
 
 }
