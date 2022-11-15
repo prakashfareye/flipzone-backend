@@ -52,7 +52,10 @@ public class CartItemController {
 
         return cartItemService.getCartItemByCartId(id);
     }
+    @GetMapping("/p/{uid}/{pid}")
+    public List<CartItem> getCartItemByProductId(@PathVariable Long uid,@PathVariable Long pid){
 
-
+        return cartItemService.getCartItemByProductId(uid,pid);
+    }
 
 }

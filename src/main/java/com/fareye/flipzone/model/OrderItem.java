@@ -25,7 +25,6 @@ public class OrderItem  {
 //    @Column(name = "order_id")
 //    private Long orderId;
 
-
     @ManyToOne(cascade ={CascadeType.MERGE})
     @JsonBackReference
     @JoinColumn(name="order_id")

@@ -1,6 +1,7 @@
 package com.fareye.flipzone.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,15 +31,16 @@ public class Transaction {
     @Column(name="transaction_date")
     private Date   transactionDate;
 
-//    @ManyToOne(cascade = CascadeType.MERGE)
-//    @JsonBackReference
-//    @JoinColumn(name="user_id")
-//    private User  user;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonBackReference
+    @JoinColumn(name="order_id")
+    private Order order;
 
     @Column(name="user_Id")
     private Long userId;
 
-    @Column(name="order_id")
+    @Column(name="orderr_id")
     private Long orderId;
 
 //    @ManyToOne(cascade = CascadeType.MERGE)
