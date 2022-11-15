@@ -1,8 +1,7 @@
 package com.fareye.flipzone.service;
 
 import com.fareye.flipzone.dto.CartItemDto;
-import com.fareye.flipzone.model.CartItem;
-import com.fareye.flipzone.model.Product;
+import com.fareye.flipzone.model.*;
 import com.fareye.flipzone.repository.CartItemRepository;
 import com.fareye.flipzone.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,27 +12,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CartItemServiceImpl {
+public class CartItemServiceImpl implements CartItemService {
 
     @Autowired
     CartItemRepository cartItemRepository;
 
     @Autowired
     ProductRepository productRepository;
-  //  @Override
+    @Override
     public CartItem addCartItem(CartItem cartitem) {
 
         return  cartItemRepository.save(cartitem);
-
-
     }
-  //  @Override
+    @Override
     public List<CartItem> getCartItems() {
         return cartItemRepository.findAll();
     }
-  //  @Override
-    public List<CartItemDto> getCartItemByUserId(Long id) {
 
+    @Override
+    public List<CartItemDto> getCartItemByUserId(Long id) {
         List<CartItem>cartItems=cartItemRepository.findByUserId(id);
         List<CartItemDto>cartItemDtos=new ArrayList<>();
         for(CartItem c:cartItems) {
@@ -42,22 +39,22 @@ public class CartItemServiceImpl {
         }
         return cartItemDtos;
     }
-  //  @Override
+    @Override
     public void deleteCartItemByUserId(Long id) {
-
 
     }
 
-  //  @Override
+    @Override
     public void deleteCartItemByOrderId(Long id) {
 
     }
 
-   // @Override
+    @Override
     public List<CartItem> getCartItemByOrderId(Long id) {
         return cartItemRepository.findByOrderId(id);
     }
 
+    @Override
     public List<CartItem> getCartItemByCartId(Long id) {
         return cartItemRepository.findByCartId(id);
     }
@@ -68,6 +65,16 @@ public class CartItemServiceImpl {
 
     }
 
-//    public List<CartItem> getCartItemByProductId(Long id) {
-//    }
+    @Override
+    public  CartItem getCartItemByCartItemtId(Long id) {
+        return cartItemRepository.findByCartItemId(id);
+    }
+
+    @Override
+    public CartItem updateCartItem(Long id, CartItem cartItem, Integer add) {
+        cartItem.setCartItemQuantity(cartItem.getCartItemQuantity() + add);
+        cartItem.setCartItemId(id);
+        return cartItemRepository.save(cartItem);
+    }
+
 }

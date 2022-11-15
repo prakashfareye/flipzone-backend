@@ -61,4 +61,9 @@ public class ProductController {
         productService.deleteProduct(id);
         return "Product Deleted";
     }
+
+    @GetMapping("/top")
+    public  List<Product> getTopSellingProducts() {
+        return productService.findTopSellingProducts();
+    }
 }
