@@ -67,7 +67,7 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public  CartItem getCartItemByCartItemtId(Long id) {
-        return cartItemRepository.findByCartItemId(id);
+        return cartItemRepository.findById(id).orElseThrow(() -> new FileSystemNotFoundException("CartItem Not Found"));
     }
 
     @Override
