@@ -106,6 +106,7 @@ class OrderServiceImplTest {
     @Test
     void deleteorder() {
         Long orderid=31L;
+        when(orderRepository.findById(orderid)).thenReturn(Optional.ofNullable(order));
         orderService.deleteorder(orderid);
         verify(orderRepository,times(1)).deleteById(orderid);
     }
