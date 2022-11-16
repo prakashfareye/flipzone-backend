@@ -54,9 +54,9 @@ public class CartItemController {
         return cartItemService.getCartItemByCartId(id);
     }
     @GetMapping("/p/{uid}/{pid}")
-    public List<CartItem> getCartItemByProductId(@PathVariable Long uid,@PathVariable Long pid) {
+    public List<CartItem> getCartItemByProductId(@PathVariable Long pid,@PathVariable Long uid) {
 
-        return cartItemService.getCartItemByProductId(uid, pid);
+        return cartItemService.getCartItemByProductId(pid, uid);
 
     }
     @PutMapping("/increase/{id}")
@@ -69,6 +69,16 @@ public class CartItemController {
     public CartItem DecreaseItemCount (@PathVariable Long id) {
         CartItem cartItem = cartItemService.getCartItemByCartItemtId(id);
         return cartItemService.updateCartItem(id, cartItem, -1);
+    }
+
+    @DeleteMapping("/c/{id}")
+    public void DeleteCartItemByCartItemId(@PathVariable Long id){
+        cartItemService.deleteCartItemByCartItemId(id);
+    }
+
+    @DeleteMapping("/u/{id}")
+    public void DeleteCartItemByUserId(@PathVariable Long id){
+        cartItemService.deleteCartItemByUserId(id);
     }
 
 }

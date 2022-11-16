@@ -23,10 +23,10 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public List<Transaction> getAllTransactionById() {
+    public List<Transaction> getAllTransactionById() throws FileSystemNotFoundException{
 
         return (List<Transaction>) transactionRepository.findById(1L).orElseThrow(
-                () -> new FileSystemNotFoundException("OrderItem Not Found"));
+                () -> new FileSystemNotFoundException("No Transaction For Given User"));
 
     }
 
@@ -34,9 +34,6 @@ public class TransactionServiceImpl implements TransactionService{
     public List<Transaction> getAllTransactionByOrderId(Long orderId) {
         List<Transaction> list;
         list= (List<Transaction>) transactionRepository.findByOrder_OrderId(orderId);
-        if(list.size()==0||list==null){
-            return null;
-        }
        return list;
     }
 
@@ -44,11 +41,7 @@ public class TransactionServiceImpl implements TransactionService{
     public List<Transaction> getAllTransactionByUserId(Long userId){
         List<Transaction> list;
         list=transactionRepository.findByUserId(userId);
-        if(list.size()==0||list==null){
-            return null;
-        }
         return list;
     }
-
-
+    
 }

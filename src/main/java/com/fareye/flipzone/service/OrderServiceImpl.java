@@ -25,22 +25,22 @@ public class OrderServiceImpl implements OrderService{
     ProductRepository productRepository;
 
     @Override
-    public List<Order> getAllorders() {
+    public List<Order> getAllorders(){
 
         List<Order> orders= orderRepository.findAll();
-        System.out.println(orders);
         return orders;
     }
 
     @Override
     public Order addorders(Order order) {
+
          Order orderAdded= orderRepository.save(order);
          return orderAdded;
     }
 
     @Override
-    public Order updateorder(Long id, Order order) {
-        Order oldOrder= orderRepository.findById(id).orElseThrow(()->new RuntimeException("Order Not Found"));
+    public Order updateorder(Long id, Order order) throws FileSystemNotFoundException{
+        Order oldOrder= orderRepository.findById(id).orElseThrow(()->new FileSystemNotFoundException("Order Not Found"));
         oldOrder.setOrderItems(order.getOrderItems());
         oldOrder.setStatus(order.getStatus());
         oldOrder.setTotal(order.getTotal());
@@ -49,20 +49,20 @@ public class OrderServiceImpl implements OrderService{
         return oldOrder;
     }
     @Override
-    public void deleteorder(Long id) {
-        orderRepository.deleteById(id);
+    public void deleteorder(Long id) throws FileSystemNotFoundException {
 
+        orderRepository.findById(id).orElseThrow(() -> new FileSystemNotFoundException("Order Not Found"));
+
+        orderRepository.deleteById(id);
     }
     @Override
-    public List<Order> getOrderByid(Long id) {
-
+    public List<Order> getOrderByid(Long id){
         List<Order> orders = orderRepository.findByUser_userId(id);
-        List<OrderDto>orderDtos=new ArrayList<>();
         return orders;
     }
 
     @Override
-    public Order getOrderByOrderid(Long id) {
+    public Order getOrderByOrderid(Long id) throws  FileSystemNotFoundException{
 
         return  orderRepository.findById(id).orElseThrow(()->new FileSystemNotFoundException("Order Not Found"));
 

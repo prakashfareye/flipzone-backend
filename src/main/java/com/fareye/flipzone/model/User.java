@@ -15,9 +15,11 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name="users",
        uniqueConstraints = @UniqueConstraint(
               name="unique_user_email_id",
