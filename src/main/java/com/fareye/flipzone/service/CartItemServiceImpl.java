@@ -82,7 +82,7 @@ public class CartItemServiceImpl implements CartItemService {
         cartItemRepository.findById(id).orElseThrow(
                 () -> new FileSystemNotFoundException("CartItem Not Found"));
         cartItemRepository.deleteById(id);
-        
+    }
     @Override
     public void deleteCartItemsByUserId(Long id) {
         cartItemRepository.deleteByUserId(id);
