@@ -49,9 +49,9 @@ public class CartItemController {
          cartItemService.deleteCartItemByOrderId(id);
     }
     @GetMapping("/c/{id}")
-    public List<CartItem> getCartItemByCartId(@PathVariable Long id){
+    public CartItem getCartItemByCartId(@PathVariable Long id){
 
-        return cartItemService.getCartItemByCartId(id);
+        return cartItemService.getCartItemByCartItemtId(id);
     }
     @GetMapping("/p/{uid}/{pid}")
     public List<CartItem> getCartItemByProductId(@PathVariable Long pid,@PathVariable Long uid) {
