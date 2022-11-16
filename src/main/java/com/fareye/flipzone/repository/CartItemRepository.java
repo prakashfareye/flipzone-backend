@@ -1,10 +1,9 @@
 package com.fareye.flipzone.repository;
 
-import com.fareye.flipzone.model.CartItem;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.fareye.flipzone.model.*;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
+import javax.transaction.*;
 import java.util.List;
 
 @Repository
