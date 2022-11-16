@@ -41,7 +41,7 @@ public class CartItemServiceImpl implements CartItemService {
     }
     @Override
     public void deleteCartItemByUserId(Long id) {
-
+        cartItemRepository.deleteByUserId(id);
     }
 
     @Override
@@ -59,9 +59,9 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItemRepository.findByCartId(id);
     }
 
-    public List<CartItem> getCartItemByProductId(Long uid,Long pid) {
+    public List<CartItem> getCartItemByProductId(Long pid,Long uid) {
 
-      return  cartItemRepository.findByProductIdAndUserId(uid,pid);
+      return  cartItemRepository.findByProductIdAndUserId(pid,uid);
 
     }
 
@@ -77,4 +77,10 @@ public class CartItemServiceImpl implements CartItemService {
         return cartItemRepository.save(cartItem);
     }
 
+    public void deleteCartItemByCartItemId(Long id) {
+
+        cartItemRepository.findById(id).orElseThrow(
+                () -> new FileSystemNotFoundException("CartItem Not Found"));
+        cartItemRepository.deleteById(id);
+    }
 }

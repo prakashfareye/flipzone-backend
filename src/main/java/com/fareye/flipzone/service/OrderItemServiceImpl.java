@@ -20,7 +20,7 @@ public class OrderItemServiceImpl implements OrderItemService{
     }
 
     @Override
-    public List<OrderItem> getAllorderItemsById() {
+    public List<OrderItem> getAllorderItemsById() throws FileSystemNotFoundException{
           return (List<OrderItem>) orderItemRepository.findById(1L).orElseThrow(
                   () -> new FileSystemNotFoundException("OrderItem Not Found"));
     }
@@ -30,7 +30,7 @@ public class OrderItemServiceImpl implements OrderItemService{
         return orderitem;
     }
     @Override
-    public void deleteOrderItem(Long id) {
+    public void deleteOrderItem(Long id) throws FileSystemNotFoundException{
         orderItemRepository.findById(id).orElseThrow(
                 () -> new FileSystemNotFoundException("OrderItem Not Found"));
         orderItemRepository.deleteById(id);

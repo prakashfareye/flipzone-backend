@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Getter @Setter @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "order_item")
 public class OrderItem  {
     @Id
@@ -19,7 +20,7 @@ public class OrderItem  {
     @Column(name = "order_item_id")
     private Long orderItemId;
 
-    @Column(name = "product_id")
+    @Column(name = "productt_id")
     private Long productId;
 
 //    @Column(name = "order_id")
