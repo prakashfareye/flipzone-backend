@@ -34,7 +34,7 @@ public class OrderItem  {
 
 
     @OneToOne(cascade ={CascadeType.MERGE})
-  //  @JsonBackReference
+    //@JsonManagedReference
     @JoinColumn(name="product_id")
     private Product  product;
 
