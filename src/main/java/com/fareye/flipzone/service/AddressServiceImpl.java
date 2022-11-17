@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.FileSystemNotFoundException;
+import java.util.List;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -26,8 +27,8 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address getAddressByUserId(long id) {
-        Address address = addressRepository.findByUserId(id);
+    public List<Address> getAddressByUserId(long id) {
+        List<Address> address = addressRepository.findByUserId(id);
         return address != null ? address : null;
     }
 

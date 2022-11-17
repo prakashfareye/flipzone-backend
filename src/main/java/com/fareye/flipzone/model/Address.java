@@ -1,5 +1,6 @@
 package com.fareye.flipzone.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,6 +30,6 @@ public class Address {
     @Column(name="description")
     private String description;
     @Column(name = "user_id")
-    private long userId;
+     private long userId;
 
 }
