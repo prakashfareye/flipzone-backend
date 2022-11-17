@@ -45,7 +45,7 @@ public class OrderServiceImpl implements OrderService{
          Order orderAdded= orderRepository.save(order);
          List<OrderItem> orderItemList = orderAdded.getOrderItems();
          for (OrderItem oi : orderItemList){
-             long productId = oi.getProductId();
+             long productId = oi.getProduct().getProductId();
              int quantity = oi.getQuantity();
              productService.updateProductQuantity(productId, quantity);
          }
