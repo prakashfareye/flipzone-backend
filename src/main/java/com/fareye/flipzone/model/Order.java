@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -34,7 +37,8 @@ public class Order{
     private User  user;
 
     //@JsonIgnore
-    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.JOIN)
+    @OneToMany(mappedBy = "Transaction_Id",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Transaction> transactions;
 

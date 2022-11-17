@@ -18,4 +18,6 @@ public interface UserService {
     User updateUser(long id, User user);
 
     void deleteUserById(long id);
+
+    List<User>      usersOrderForProduct(Long uid);
 }

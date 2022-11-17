@@ -2,6 +2,7 @@ package com.fareye.flipzone.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,8 +41,8 @@ public class Transaction {
     @Column(name="user_Id")
     private Long userId;
 
-    @Column(name="orderr_id")
-    private Long orderId;
+//    @Column(name="orderr_id")
+//    private Long orderId;
 
 //    @ManyToOne(cascade = CascadeType.MERGE)
 //    @JsonBackReference

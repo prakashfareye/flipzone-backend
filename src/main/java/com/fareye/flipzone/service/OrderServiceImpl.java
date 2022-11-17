@@ -6,8 +6,10 @@ import com.fareye.flipzone.dto.OrderItemDto;
 import com.fareye.flipzone.model.Order;
 import com.fareye.flipzone.model.OrderItem;
 import com.fareye.flipzone.model.Product;
+import com.fareye.flipzone.model.Transaction;
 import com.fareye.flipzone.repository.OrderRepository;
 import com.fareye.flipzone.repository.ProductRepository;
+import com.fareye.flipzone.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    TransactionRepository transactionRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -67,7 +72,12 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> getOrderByid(Long id){
         List<Order> orders = orderRepository.findByUser_userId(id);
-        return orders;
+      for(Order o:orders) {
+      List<Transaction> transactions=transactionRepository.findByOrder_OrderId(o.getOrderId());
+      System.out.println(transactions);
+      o.setTransactions(transactions);
+      }
+      return orders;
     }
 
     @Override
