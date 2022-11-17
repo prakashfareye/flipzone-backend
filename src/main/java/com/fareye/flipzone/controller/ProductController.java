@@ -51,9 +51,9 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
-    @PutMapping("/{id}")
-    public Product updateProductQuantity(@PathVariable long id) {
-        return productService.updateProductQuantity(id);
+    @PutMapping("/{id}/{quantity}")
+    public Product updateProductQuantity(@PathVariable long id, @PathVariable int quantity) {
+        return productService.updateProductQuantity(id, quantity);
     }
 
     @DeleteMapping("/{id}")

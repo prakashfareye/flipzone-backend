@@ -24,6 +24,9 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ProductService productService;
+
     @Override
     public List<Order> getAllorders(){
 
@@ -35,6 +38,12 @@ public class OrderServiceImpl implements OrderService{
     public Order addorders(Order order) {
 
          Order orderAdded= orderRepository.save(order);
+         List<OrderItem> orderItemList = orderAdded.getOrderItems();
+         for (OrderItem oi : orderItemList){
+             long productId = oi.getProductId();
+             int quantity = oi.getQuantity();
+             productService.updateProductQuantity(productId, quantity);
+         }
          return orderAdded;
     }
 

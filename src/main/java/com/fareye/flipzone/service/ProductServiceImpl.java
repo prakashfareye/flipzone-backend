@@ -48,11 +48,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProductQuantity(long id) {
+    public Product updateProductQuantity(long id, int quantityPlaced) {
         Product oldProduct = productRepository.findById(id).orElseThrow(
                 () -> new FileSystemNotFoundException("Product Not Found"));
         int currentQuantity = oldProduct.getProductQuantity();
-        oldProduct.setProductQuantity(--currentQuantity);
+        oldProduct.setProductQuantity((currentQuantity - quantityPlaced));
         return productRepository.save(oldProduct);
     }
 
