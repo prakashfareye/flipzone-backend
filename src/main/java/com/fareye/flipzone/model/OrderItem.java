@@ -2,6 +2,7 @@ package com.fareye.flipzone.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,8 +21,8 @@ public class OrderItem  {
     @Column(name = "order_item_id")
     private Long orderItemId;
 
-    @Column(name = "productt_id")
-    private Long productId;
+//    @Column(name = "productt_id")
+//    private Long productId;
 
 //    @Column(name = "order_id")
 //    private Long orderId;
@@ -30,6 +31,12 @@ public class OrderItem  {
     @JsonBackReference
     @JoinColumn(name="order_id")
     private Order  order;
+
+
+    @OneToOne(cascade ={CascadeType.MERGE})
+  //  @JsonBackReference
+    @JoinColumn(name="product_id")
+    private Product  product;
 
     @Column(name = "quantity")
     private Integer quantity;

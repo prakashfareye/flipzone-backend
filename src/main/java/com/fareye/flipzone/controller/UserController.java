@@ -48,4 +48,10 @@ public class UserController {
         userService.deleteUserById(id);
         return "User deleted";
     }
+    @GetMapping("/userforretailer/{uid}")
+    public ResponseEntity<List<User>> getUsersREtailer(@PathVariable Long uid) {
+        List<User> users = userService.usersOrderForProduct(uid);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
 }
