@@ -21,7 +21,7 @@ public interface ProductService {
 
     Product getProductById(long id);
 
-    Product updateProductQuantity(long id);
+    Product updateProductQuantity(long id, int quantity);
 
     void deleteProduct(long id);
 
