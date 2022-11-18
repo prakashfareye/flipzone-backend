@@ -32,9 +32,8 @@ public class OrderItem  {
     @JoinColumn(name="order_id")
     private Order  order;
 
-
-    @OneToOne(cascade ={CascadeType.MERGE})
-    //@JsonManagedReference
+    @ManyToOne(cascade ={CascadeType.MERGE})
+// @JsonManagedReference
     @JoinColumn(name="product_id")
     private Product  product;
 

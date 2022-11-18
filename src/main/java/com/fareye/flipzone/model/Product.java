@@ -60,8 +60,8 @@ public class Product {
 //    @JsonManagedReference
 //    private List<CartItem> cartItems;
 
-    @OneToOne(mappedBy = "product",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "orderItemId",cascade = {CascadeType.ALL})
     @JsonBackReference
-    private OrderItem orderItem;
+    private List<OrderItem> orderItem;
 
 }
