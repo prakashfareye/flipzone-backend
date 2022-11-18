@@ -67,7 +67,7 @@ class TransactionServiceImplTest {
                 .build();
 
         orderItem=OrderItem.builder()
-                .productId(1L)
+//                .productId(1L)
                 .quantity(2)
                 .total(4000.0)
                 .build();

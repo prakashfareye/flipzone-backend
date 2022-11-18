@@ -19,7 +19,7 @@ public class WelcomeController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/getUser")
     @ResponseBody
     public ResponseEntity<User> welcome(Authentication authentication) {
         String emailOfLoggedInUser = authentication.getName();

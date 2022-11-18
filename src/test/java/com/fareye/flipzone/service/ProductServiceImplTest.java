@@ -104,14 +104,14 @@ class ProductServiceImplTest {
         int currentQuantity = product.getProductQuantity()-1;
         product.setProductQuantity(currentQuantity);
         when(productRepository.save(product)).thenReturn(product);
-        assertEquals(product , productService.updateProductQuantity(id));
+        assertEquals(product , productService.updateProductQuantity(id, 1));
     }
 
     @DisplayName("JUnit Test for Updating product using Id and newProduct object Exception")
     @Test
     public void updateProductQuantityExceptionTest(){
         long id = 2;
-        assertThrows(FileSystemNotFoundException.class,()->{productService.updateProductQuantity(id);});
+        assertThrows(FileSystemNotFoundException.class,()->{productService.updateProductQuantity(id, 1);});
     }
 
     @DisplayName("JUnit Test for Deleting product using Id")

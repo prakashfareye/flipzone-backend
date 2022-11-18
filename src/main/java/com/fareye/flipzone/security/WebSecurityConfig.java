@@ -1,5 +1,6 @@
 package com.fareye.flipzone.security;
 
+import lombok.extern.slf4j.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,14 +20,16 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
+@Slf4j
 public class WebSecurityConfig {
 
-    @Bean
+        @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/user").permitAll()
+                .antMatchers("/getUser").authenticated()
                 .antMatchers("/user/**").permitAll()
                 .antMatchers("/product").permitAll()
                 .antMatchers("/address").permitAll()
@@ -45,25 +48,86 @@ public class WebSecurityConfig {
                 .antMatchers("/orderitem").permitAll()
                 .antMatchers("/orderitem").permitAll()
                 .antMatchers("/orderitems").permitAll()
-               // .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
-
+        // .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
                 .antMatchers("/category").permitAll()
                 .antMatchers("/cart").permitAll()
                 .antMatchers("/orderitem").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin()
-                .loginProcessingUrl("/login")
-                .failureHandler(new AuthenticationFailureHandler() {
-                    @Override
-                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                                        AuthenticationException exception) throws IOException, ServletException {
-                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                    }
-                });
+                .formLogin(form ->
+                        form.loginProcessingUrl("/login").permitAll()
+                                .successHandler(
+                                        ( request, response, authentication ) -> {
+                                            response.setStatus( HttpServletResponse.SC_ACCEPTED );
+                                            response.setHeader("X-User", authentication.getName());
+                                        }
+                                )
+                                .failureHandler(
+                                        ( request, response, authenticationException ) -> {
+                                            log.debug("failureHandler:", authenticationException);
+                                            response.sendError(HttpServletResponse.SC_FORBIDDEN, authenticationException.getMessage());
+                                        }
+                                )
+                )
+                .exceptionHandling()
+                .authenticationEntryPoint(( request, response, authenticationException ) -> {
+                    log.debug("authenticationEntryPoint:", authenticationException);
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authenticationException.getMessage());
+                })
+                .accessDeniedHandler(( request, response, accessDeniedException ) -> {
+                    log.debug("accessDeniedHandler:", accessDeniedException);
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN, accessDeniedException.getMessage());
+                })
+        ;
         return http.build();
     }
+
+
+
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+//        http.cors().and()
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/user").permitAll()
+//                .antMatchers("/user/**").permitAll()
+//                .antMatchers("/product").permitAll()
+//                .antMatchers("/address").permitAll()
+//                .antMatchers("/address/**").permitAll()
+//                .antMatchers("/product/**").permitAll()
+//
+//                .antMatchers("/order/**").permitAll()
+//                .antMatchers("/order").permitAll()
+//                .antMatchers("/transactions/**").permitAll()
+//                .antMatchers("/transaction/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
+//                .antMatchers("/cart").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/cartItem").permitAll()
+//                .antMatchers("/cartItem/**").permitAll()
+//                .antMatchers("/orderitem").permitAll()
+//                .antMatchers("/orderitem").permitAll()
+//                .antMatchers("/orderitems").permitAll()
+//               // .antMatchers(HttpMethod.POST, "/product").hasRole("RETAILER")
+//
+//                .antMatchers("/category").permitAll()
+//                .antMatchers("/cart").permitAll()
+//                .antMatchers("/orderitem").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .formLogin()
+//                .loginProcessingUrl("/login")
+//                .failureHandler(new AuthenticationFailureHandler() {
+//                    @Override
+//                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+//                                                        AuthenticationException exception) throws IOException, ServletException {
+//                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+//                    }
+//                });
+//        return http.build();
+//    }
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
