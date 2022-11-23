@@ -1,9 +1,6 @@
 package com.fareye.flipzone.service;
 
-import com.fareye.flipzone.model.Order;
-import com.fareye.flipzone.model.OrderItem;
-import com.fareye.flipzone.model.Transaction;
-import com.fareye.flipzone.model.User;
+import com.fareye.flipzone.model.*;
 import com.fareye.flipzone.repository.OrderItemRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -13,8 +10,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -60,7 +59,7 @@ class OrderItemServiceImplTest {
                 .build();
 
         orderItem=OrderItem.builder()
-                .productId(1L)
+//                .productId(1L)
                 .quantity(2)
                 .total(4000.0)
                 .order(order)
@@ -82,7 +81,6 @@ class OrderItemServiceImplTest {
     @Test
     void getAllorderItemsById() {
 
-
     }
 
     @Test
@@ -95,9 +93,18 @@ class OrderItemServiceImplTest {
 
     @Test
     void deleteOrderItem() {
-//        Long orderItemid=31L;
-//        orderItemService.deleteOrderItem(orderItemid);
-//        verify(orderItemRepository,times(1)).deleteById(orderItemid);
+        Long orderItemid=3L;
+        when(orderItemRepository.findById(orderItemid)).thenReturn(Optional.ofNullable(orderItem));
+        orderItemService.deleteOrderItem(orderItemid);
+        verify(orderItemRepository,times(1)).deleteById(orderItemid);
 
     }
+
+    @Test
+    void deleteOrderItemException() {
+        Long orderItemid=3L;
+        assertThrows(FileSystemNotFoundException.class,()->{orderItemService.deleteOrderItem(orderItemid);});
+
+    }
+
 }

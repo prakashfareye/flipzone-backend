@@ -42,6 +42,7 @@ public class Order{
     @JsonManagedReference
     private List<Transaction> transactions;
 
+    @Fetch(value = FetchMode.JOIN)
     @OneToMany(mappedBy = "orderItemId",cascade = {CascadeType.ALL})
     @JsonManagedReference
     private List<OrderItem> orderItems;

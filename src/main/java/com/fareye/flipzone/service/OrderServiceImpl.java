@@ -7,6 +7,7 @@ import com.fareye.flipzone.model.Order;
 import com.fareye.flipzone.model.OrderItem;
 import com.fareye.flipzone.model.Product;
 import com.fareye.flipzone.model.Transaction;
+import com.fareye.flipzone.repository.OrderItemRepository;
 import com.fareye.flipzone.repository.OrderRepository;
 import com.fareye.flipzone.repository.ProductRepository;
 import com.fareye.flipzone.repository.TransactionRepository;
@@ -31,6 +32,9 @@ public class OrderServiceImpl implements OrderService{
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    OrderItemRepository orderItemRepository;
 
     @Override
     public List<Order> getAllorders(){
@@ -75,7 +79,9 @@ public class OrderServiceImpl implements OrderService{
       for(Order o:orders) {
       List<Transaction> transactions=transactionRepository.findByOrder_OrderId(o.getOrderId());
       System.out.println(transactions);
+      List<OrderItem> orderItemss=orderItemRepository.findByOrder_OrderId(o.getOrderId());
       o.setTransactions(transactions);
+      o.setOrderItems(orderItemss);
       }
       return orders;
     }
