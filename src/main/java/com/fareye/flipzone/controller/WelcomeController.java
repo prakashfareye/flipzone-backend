@@ -19,6 +19,7 @@ public class WelcomeController {
     @Autowired
     UserService userService;
 
+//    @GetMapping("/getUser")
     @GetMapping("/")
     @ResponseBody
     public ResponseEntity<User> welcome(Authentication authentication) {

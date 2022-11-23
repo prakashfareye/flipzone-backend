@@ -1,18 +1,17 @@
 package com.fareye.flipzone.service;
 
-import com.fareye.flipzone.model.Order;
-import com.fareye.flipzone.model.OrderItem;
-import com.fareye.flipzone.model.Transaction;
-import com.fareye.flipzone.model.User;
+import com.fareye.flipzone.model.*;
 import com.fareye.flipzone.repository.OrderRepository;
 import com.fareye.flipzone.repository.TransactionRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.nio.file.FileSystemNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +66,6 @@ class TransactionServiceImplTest {
                 .build();
 
         orderItem=OrderItem.builder()
-                .productId(1L)
                 .quantity(2)
                 .total(4000.0)
                 .build();
@@ -87,9 +85,12 @@ class TransactionServiceImplTest {
 
     @Test
     void getAllTransactionById() {
-//         Long transactionId=1L;
+ //       Long transactionId=1L;
 //        when(transactionRepository.findById(transactionId)).thenReturn(Optional.ofNullable(transaction));
 //        assertEquals(transaction,transactionService.getAllTransactionById());
+
+
+
     }
 
     @Test
@@ -103,7 +104,10 @@ class TransactionServiceImplTest {
 
     @Test
     void getAllTransactionByUserId() {
+        long id=2;
 
+        when(transactionRepository.findByUserId(id)).thenReturn(TransactionList);
+        assertEquals(TransactionList,transactionService.getAllTransactionByUserId(id));
 
     }
 }
